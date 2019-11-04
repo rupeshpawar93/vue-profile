@@ -15,10 +15,10 @@ export const store = new Vuex.Store({
             --state.myshare
         },
         addPrice(state,price) {
-            state.sharePrice=state.sharePrice+price
+            state.price+=price
         },
         minusPrice(state,price) {
-            state.sharePrice=state.sharePrice-price
+            state.price-=price
         }
     },
     actions: {
@@ -30,6 +30,7 @@ export const store = new Vuex.Store({
             }
         },
         addPriceValue(context,[flag,price]) {
+            
             if(flag) {
                 context.commit('addPrice',price)
             } else {

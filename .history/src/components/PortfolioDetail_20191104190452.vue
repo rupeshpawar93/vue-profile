@@ -70,9 +70,11 @@ export default {
         add(item,index) {
             if(item.ShareAvailable!=0) {
                 this.items[index]['ShareBuy'] = ++item.ShareBuy;
+                // this.mytotalcost = this.mytotalcost + item.SharePrice;
                 this.items[index]['ShareAvailable'] = --item.ShareAvailable;
                 this.$store.dispatch('addIncrement',1)
                 this.$store.dispatch('addPriceValue',[1,item.SharePrice])
+                // this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No Share left');
             }

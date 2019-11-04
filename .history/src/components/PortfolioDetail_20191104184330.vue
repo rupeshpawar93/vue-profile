@@ -70,9 +70,11 @@ export default {
         add(item,index) {
             if(item.ShareAvailable!=0) {
                 this.items[index]['ShareBuy'] = ++item.ShareBuy;
+                // this.mytotalcost = this.mytotalcost + item.SharePrice;
                 this.items[index]['ShareAvailable'] = --item.ShareAvailable;
                 this.$store.dispatch('addIncrement',1)
-                this.$store.dispatch('addPriceValue',[1,item.SharePrice])
+                this.$store.dispatch('addPriceValue',1,item.SharePrice)
+                // this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No Share left');
             }
@@ -80,10 +82,11 @@ export default {
         minus(item,index) {
             if(item.ShareBuy!=0) {
                 this.items[index]['ShareBuy'] = --item.ShareBuy;
+                //this.mytotalcost = this.mytotalcost - item.SharePrice;
                 this.items[index]['ShareAvailable'] = ++item.ShareAvailable;
                 this.$store.dispatch('addIncrement',0)
-                let payload = {'flag':0,'price':item.SharePrice}
-                this.$store.dispatch('addPriceValue',[0,item.SharePrice])
+                this.$store.dispatch('addPriceValue',0,item.SharePrice)
+                //this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No buy Share left');
             }

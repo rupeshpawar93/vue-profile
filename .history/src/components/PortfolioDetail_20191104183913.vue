@@ -5,7 +5,7 @@
             <li>Username: {{profile.username}}</li>
             <li>Phone no: {{profile.phone}}</li>
             <li>My Total Share: {{myshare}}</li>
-            <li>Total Cost: {{mysharePrice}}</li>
+            <li>Total Cost: {{mytotalcost}}</li>
         </ul>
         <b-table striped hover :fields="fields" :items="items">
              <template v-slot:cell(actions)="row">
@@ -70,9 +70,10 @@ export default {
         add(item,index) {
             if(item.ShareAvailable!=0) {
                 this.items[index]['ShareBuy'] = ++item.ShareBuy;
+                this.mytotalcost = this.mytotalcost + item.SharePrice;
                 this.items[index]['ShareAvailable'] = --item.ShareAvailable;
                 this.$store.dispatch('addIncrement',1)
-                this.$store.dispatch('addPriceValue',[1,item.SharePrice])
+                // this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No Share left');
             }
@@ -80,10 +81,10 @@ export default {
         minus(item,index) {
             if(item.ShareBuy!=0) {
                 this.items[index]['ShareBuy'] = --item.ShareBuy;
+                this.mytotalcost = this.mytotalcost - item.SharePrice;
                 this.items[index]['ShareAvailable'] = ++item.ShareAvailable;
                 this.$store.dispatch('addIncrement',0)
-                let payload = {'flag':0,'price':item.SharePrice}
-                this.$store.dispatch('addPriceValue',[0,item.SharePrice])
+                //this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No buy Share left');
             }

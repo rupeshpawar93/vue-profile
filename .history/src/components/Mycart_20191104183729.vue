@@ -1,7 +1,6 @@
 <template>
     <div style="width:90%;margin:0 auto;">
         <p style="float:right">Mycart:{{myshare}}</p>
-        <p style="float:right">mysharePrice:{{mysharePrice}}</p>
         <div style="overflow:auto">
             <PortfolioDetail :profile="profile"/>
         </div>
