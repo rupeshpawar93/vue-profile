@@ -59,19 +59,14 @@ export default {
             ]
         }
     },
-    computed:{
-        myshare() {
-            return this.$store.state.myshare
-        }
-    },
     methods: {
         add(item,index) {
             if(item.ShareAvailable!=0) {
                 this.items[index]['ShareBuy'] = ++item.ShareBuy;
+                this.myshare = ++this.myshare;
                 this.mytotalcost = this.mytotalcost + item.SharePrice;
                 this.items[index]['ShareAvailable'] = --item.ShareAvailable;
-                this.$store.dispatch('addIncrement',1)
-                // this.$emit('myEvent', this.myshare);
+                this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No Share left');
             }
@@ -79,10 +74,10 @@ export default {
         minus(item,index) {
             if(item.ShareBuy!=0) {
                 this.items[index]['ShareBuy'] = --item.ShareBuy;
+                this.myshare = --this.myshare;
                 this.mytotalcost = this.mytotalcost - item.SharePrice;
                 this.items[index]['ShareAvailable'] = ++item.ShareAvailable;
-                this.$store.dispatch('addIncrement',0)
-                //this.$emit('myEvent', this.myshare);
+                this.$emit('myEvent', this.myshare);
             } else {
                 alert(item.Company+' No buy Share left');
             }

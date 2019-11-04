@@ -2,7 +2,7 @@
     <div style="width:90%;margin:0 auto;">
         <p style="float:right">Mycart:{{myshare}}</p>
         <div style="overflow:auto">
-            <PortfolioDetail :profile="profile"/>
+            <PortfolioDetail :profile="profile" @myEvent="mycart"/>
         </div>
     </div>
 </template>
@@ -18,28 +18,25 @@ export default {
     name:'mycart',
     data() {
         return {
-            profile:{}
+            profile:{},
+            share:0
         }
     },
     components: {
         PortfolioDetail
     },
     mounted() {
+        this.userId=this.$route.params.item.userId;
         axios
-        .get('https://jsonplaceholder.typicode.com/users/'+this.$route.params.item.userId)
+        .get('https://jsonplaceholder.typicode.com/users/'+this.userId)
         .then((response) => {
             this.profile =  response.data;
         });
     },
-    computed: {
-        myshare() {
-            return this.$store.state.myshare
-        }
-    },
     methods: {
-        // mycart(val) {
-        //     this.share=val
-        // }
+        mycart(val) {
+            this.share=val
+        }
     }
 }
 </script>

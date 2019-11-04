@@ -33,6 +33,7 @@ export default {
         return {
             userId:'',
             fields:['id','Company','SharePrice','ShareAvailable','ShareBuy','Actions'],
+            myshare:0,
             mytotalcost:0,
             items:[
                 {
@@ -59,15 +60,11 @@ export default {
             ]
         }
     },
-    computed:{
-        myshare() {
-            return this.$store.state.myshare
-        }
-    },
     methods: {
         add(item,index) {
             if(item.ShareAvailable!=0) {
                 this.items[index]['ShareBuy'] = ++item.ShareBuy;
+                this.myshare = ++this.myshare;
                 this.mytotalcost = this.mytotalcost + item.SharePrice;
                 this.items[index]['ShareAvailable'] = --item.ShareAvailable;
                 this.$store.dispatch('addIncrement',1)
@@ -79,6 +76,7 @@ export default {
         minus(item,index) {
             if(item.ShareBuy!=0) {
                 this.items[index]['ShareBuy'] = --item.ShareBuy;
+                this.myshare = --this.myshare;
                 this.mytotalcost = this.mytotalcost - item.SharePrice;
                 this.items[index]['ShareAvailable'] = ++item.ShareAvailable;
                 this.$store.dispatch('addIncrement',0)

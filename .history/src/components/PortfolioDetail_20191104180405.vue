@@ -59,11 +59,6 @@ export default {
             ]
         }
     },
-    computed:{
-        myshare() {
-            return this.$store.state.myshare
-        }
-    },
     methods: {
         add(item,index) {
             if(item.ShareAvailable!=0) {

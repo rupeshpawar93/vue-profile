@@ -61,7 +61,7 @@ export default {
     },
     computed:{
         myshare() {
-            return this.$store.state.myshare
+            return this.$$store.state.myshare
         }
     },
     methods: {
