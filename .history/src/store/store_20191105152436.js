@@ -9,7 +9,9 @@ export const store = new Vuex.Store({
         first_name:'rupesh'
     },
     getters: {
-        upperCase:state=>state.first_name.toUpperCase()
+        upperCase(state) {
+            return state.first_name.toUpperCase()
+        }
     },
     mutations: {
         increment(state,flag) {

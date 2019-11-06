@@ -21,7 +21,6 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        
     </div>
 </template>
 <style scoped>
@@ -39,8 +38,7 @@ export default {
     data() {
         return {
             company:'',
-            items:[],
-            data:[]
+            items:[]
         }
     },
     components: {Input}, 
@@ -53,8 +51,8 @@ export default {
         this.company = this.$route.params.item.Company
     },
     methods: {
-        checkForm() {            
-            
+        checkForm() {
+            console.log(this.items);
         },
         addnew() {
             this.items.push([

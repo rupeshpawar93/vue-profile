@@ -21,7 +21,9 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        
+        <p>
+            {{newname}}
+        </p>
     </div>
 </template>
 <style scoped>
@@ -54,7 +56,7 @@ export default {
     },
     methods: {
         checkForm() {            
-            
+            this.data = this.items
         },
         addnew() {
             this.items.push([

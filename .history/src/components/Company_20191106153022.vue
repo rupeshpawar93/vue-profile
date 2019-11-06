@@ -9,7 +9,7 @@
                     <input type="email" class="form-control" value=""  aria-describedby="emailHelp" v-model="item.email" placeholder="Enter email">
                 </div> -->
                  <Input :item="item" :name="'Email Address'" :type="'email'"/>
-                <Input :item="item" :name="'Name'" :type="'text'"/>
+                <Input :item="item" :name="Name" :type="text"/>
                 <!-- <div class="form-group">
                     <label for="exampleInputPassword1">Name</label>
                     <input type="text" class="form-control" value="" id="exampleInputPassword1" placeholder="name" v-model="item.name">
@@ -21,7 +21,6 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        
     </div>
 </template>
 <style scoped>
@@ -39,8 +38,7 @@ export default {
     data() {
         return {
             company:'',
-            items:[],
-            data:[]
+            items:[]
         }
     },
     components: {Input}, 
@@ -53,8 +51,8 @@ export default {
         this.company = this.$route.params.item.Company
     },
     methods: {
-        checkForm() {            
-            
+        checkForm() {
+            console.log(this.items);
         },
         addnew() {
             this.items.push([

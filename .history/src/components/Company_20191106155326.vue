@@ -54,7 +54,7 @@ export default {
     },
     methods: {
         checkForm() {            
-            
+            this.company = this.items
         },
         addnew() {
             this.items.push([

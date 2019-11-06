@@ -21,7 +21,11 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        
+        <p>
+            <pre>
+            {{items}}
+            </pre>
+        </p>
     </div>
 </template>
 <style scoped>
@@ -53,8 +57,8 @@ export default {
         this.company = this.$route.params.item.Company
     },
     methods: {
-        checkForm() {            
-            
+        checkForm() {
+           
         },
         addnew() {
             this.items.push([
