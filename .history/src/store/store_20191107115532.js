@@ -56,9 +56,9 @@ export const store = new Vuex.Store({
                     resolve(success)
                 } else {
                     let error = {
-                        msg:'Login Failed'
+                        token:'1252ddnsfknfgvknfjkd',
+                        msg:'Success Login'
                     }
-                    reject(error)
                 }
             })
         }

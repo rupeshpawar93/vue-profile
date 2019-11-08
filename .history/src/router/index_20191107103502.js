@@ -4,7 +4,6 @@ import Portfolio from '@/components/Portfolio'
 import PortfolioDetail from '@/components/PortfolioDetail'
 import MyCart from '@/components/Mycart'
 import Company from '@/components/Company'
-import Login from '@/components/Login'
 Vue.use(Router)
 
 export default new Router({

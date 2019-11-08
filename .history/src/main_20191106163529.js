@@ -11,6 +11,7 @@ Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
+
 Vue.use(VueProgressBar, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',

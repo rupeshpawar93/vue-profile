@@ -74,7 +74,6 @@ export default {
                 this.items.push(this.obj);
                 this.obj={};
             });
-            this.$Progress.finish()
             // this.items=response.data;
         });
         

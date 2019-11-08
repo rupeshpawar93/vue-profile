@@ -46,21 +46,7 @@ export const store = new Vuex.Store({
             }
         },
         addLogin(context,field) {
-            return new Promise((resolve,reject)=>{
-                if(field.email="abc@gmail.com" && field.password=="12345") {
-                    context.commit('auth_login')
-                    let success = {
-                        token:'1252ddnsfknfgvknfjkd',
-                        msg:'Success Login'
-                    }
-                    resolve(success)
-                } else {
-                    let error = {
-                        msg:'Login Failed'
-                    }
-                    reject(error)
-                }
-            })
+            console.log(field);
         }
     }
 });

@@ -58,7 +58,6 @@ export const store = new Vuex.Store({
                     let error = {
                         msg:'Login Failed'
                     }
-                    reject(error)
                 }
             })
         }
