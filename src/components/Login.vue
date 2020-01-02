@@ -123,9 +123,13 @@ export default {
               this.err=''
               this.$store.dispatch('addLogin',this.field)
                 .then(result=>{
+                  console.log(result);
                   this.$router.push({name:'Portfolio'})
                 })
-                .catch(error=>this.err=error.msg)
+                .catch((error)=>{
+                  this.err=error.message
+                })
+                
             }
 
         }

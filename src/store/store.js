@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Axios from 'axios';
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -47,20 +48,35 @@ export const store = new Vuex.Store({
         },
         addLogin(context,field) {
             return new Promise((resolve,reject)=>{
-                if(field.email="abc@gmail.com" && field.password=="12345") {
-                    context.commit('auth_login')
-                    let success = {
-                        token:'1252ddnsfknfgvknfjkd',
-                        msg:'Success Login'
-                    }
-                    resolve(success)
-                } else {
-                    let error = {
-                        msg:'Login Failed'
-                    }
-                    reject(error)
-                }
+                Axios.post('http://localhost:3000/api/app/signin',field)
+                .then((response)=>{
+                        if(response.data.status==0) {
+                            reject(response.data);
+                        } else {
+                            localStorage.setItem('token',response.data.data.token);
+                            context.commit('auth_login');
+                            resolve(response.data);
+                        }
+                    }).catch((err)=>{
+                        reject(err);
+                    });
             })
+        },
+        fileList(context,[param,page]) {
+            const options = {
+                headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+            };
+            let fileType = 'video-list';
+            if(param=='Audio List') {
+                fileType = 'audio-list';
+            }
+            return new Promise((resolve,reject) => {
+                Axios
+                .get('http://localhost:3000/api/app/'+fileType+'?page='+page,options)
+                .then((response) => {
+                    resolve(response.data.data);
+                }).catch(err=>reject(err));
+            });
         }
     }
 });
