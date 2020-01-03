@@ -5,6 +5,7 @@
             <ul>
                 <li><span  class="navbar-brand" @click="addTitle('Video List')">Video List</span></li>
                 <li><span class="navbar-brand"  @click="addTitle('Audio List')">Audio List</span></li>
+                <li><span class="navbar-brand" @click="logout">Logout</span></li>
             </ul>
         </div>
    </header>
@@ -42,6 +43,10 @@ export default {
     methods: {
         addTitle(param) {
             this.$emit('show-list',param);
+        },
+        logout() {
+            this.$store.dispatch('logout');
+            this.$router.push({name:'login'});
         }
     }
 }

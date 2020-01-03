@@ -6,9 +6,11 @@ import MyCart from '@/components/Mycart'
 import Company from '@/components/Company'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import store from '@/store/store'
+
 Vue.use(Router)
 
-export default new Router({
+let router =  new Router({
     mode: 'history',
     routes: [
         {
@@ -34,8 +36,24 @@ export default new Router({
         },
         {
             path:'/home',
-            name: 'home',
-            component: Home
+            name: 'Home',
+            component: Home,
+            meta: {
+                requiresAuth: true
+            }
         }
     ]
-})
+});
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (store.getters.isAuthLogin && localStorage.getItem('token')) {
+        next()
+        return
+      }
+      next('/login')
+    } else {
+      next()
+    }
+  });
+
+  export default router; 

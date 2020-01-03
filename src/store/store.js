@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 import Axios from 'axios';
 
 Vue.use(Vuex)
-export const store = new Vuex.Store({
+
+const store = new Vuex.Store({
     state: {
         myshare:0,
         sharePrice:0,
@@ -12,7 +13,8 @@ export const store = new Vuex.Store({
         token:''
     },
     getters: {
-        upperCase:state=>state.first_name.toUpperCase()
+        upperCase:state=>state.first_name.toUpperCase(),
+        isAuthLogin(state) { return state.isLogin; }
     },
     mutations: {
         increment(state,flag) {
@@ -28,7 +30,7 @@ export const store = new Vuex.Store({
             state.sharePrice=state.sharePrice-price
         },
         auth_login(state) {
-            !state.isLogin
+            state.isLogin = !state.isLogin
         }
     },
     actions: {
@@ -55,6 +57,7 @@ export const store = new Vuex.Store({
                         } else {
                             localStorage.setItem('token',response.data.data.token);
                             context.commit('auth_login');
+                            console.log(this.state.isLogin)
                             resolve(response.data);
                         }
                     }).catch((err)=>{
@@ -77,6 +80,11 @@ export const store = new Vuex.Store({
                     resolve(response.data.data);
                 }).catch(err=>reject(err));
             });
+        },
+        logout() {
+            localStorage.setItem('token','');
         }
     }
 });
+
+export default store;

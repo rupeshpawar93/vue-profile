@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App'
 import router from './router'
-import { store } from './store/store.js'
+import  store from './store/store.js'
 import VueProgressBar from 'vue-progressbar'
 
 Vue.use(BootstrapVue)
