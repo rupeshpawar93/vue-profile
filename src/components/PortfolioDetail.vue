@@ -93,12 +93,13 @@ export default {
         }
     },
     mounted() {
-        // this.userId=profile.userId;
-        // axios
-        // .get('https://jsonplaceholder.typicode.com/users/'+this.userId)
-        // .then((response) => {
-        //     this.profile =  response.data;
-        // });
+        this.userId=profile.userId;
+       
+        axios
+        .get('https://jsonplaceholder.typicode.com/users/'+this.userId)
+        .then((response) => {
+            this.profile =  response.data;
+        });
     }
 }
 </script>

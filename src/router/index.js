@@ -7,6 +7,7 @@ import Company from '@/components/Company'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import store from '@/store/store'
+import DetailFile from '@/components/DetailFile'
 
 Vue.use(Router)
 
@@ -41,12 +42,19 @@ let router =  new Router({
             meta: {
                 requiresAuth: true
             }
+        },{
+            path:'/detail/:id',
+            name:'DetailFile',
+            component: DetailFile,
+            meta: {
+                requiresAuth: true
+            }
         }
     ]
 });
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (store.getters.isAuthLogin && localStorage.getItem('token')) {
+      if (localStorage.getItem('token')) {
         next()
         return
       }

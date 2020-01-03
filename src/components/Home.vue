@@ -11,11 +11,18 @@
                             </b-button>
                         </template>
                     </b-table>
-                    <span  @click="next">Next</span>
-                    <span @click="prev">Prev</span>
+                    <span class="link"  @click="next">Next</span>
+                    <span class="link" @click="prev">Prev</span>
                 </div>
             </div>
         </template>
+        <style scoped>
+            .link {
+                color:blue;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        </style>
         <script>
         import Header from './../reuse/Header'
         import Loader from './../reuse/Loader'
@@ -50,7 +57,7 @@
                                         result.forEach((element,index) => {
                                             this.obj['Name']=element.name?element.name:element.originalname;
                                             this.obj['Path']=element.path;
-                                            this.obj['UserId']=element.user_id;
+                                            this.obj['UserId']=element.user_id.name;
                                             this.obj['Created At'] = element.createdAt;
                                             this.obj['id'] = element._id;
                                             this.items.push(this.obj);
@@ -68,20 +75,20 @@
                         --this.page;
                     }
                     this.$store.dispatch('fileList',[this.title,this.page]).then(result=>{
-                                    result.forEach((element,index) => {
-                                                        this.obj['Name']=element.name?element.name:element.originalname;
-                                                        this.obj['Path']=element.path;
-                                                        this.obj['UserId']=element.user_id;
+                        result.forEach((element,index) => {
+                                            this.obj['Name']=element.name?element.name:element.originalname;
+                                            this.obj['Path']=element.path;
+                                            this.obj['UserId']=element.user_id.name;
                                             this.obj['Created At'] = element.createdAt;
                                             this.obj['id'] = element._id;
                                             this.items.push(this.obj);
                                             this.obj={};
-                                            });
-                                            this.loader=false;
+                        });
+                        this.loader=false;
                     }).catch(err=>{});  
                 },
                 info(item,index,button) {
-                    alert(index);
+                   this.$router.push({name:'DetailFile', params: { id: item.id } });
                 },
                 addTitle(param) {
                     this.title = param;
@@ -91,7 +98,7 @@
                         result.forEach((element,index) => {
                                             this.obj['Name']=element.name?element.name:element.originalname;
                                             this.obj['Path']=element.path;
-                                            this.obj['UserId']=element.user_id;
+                                            this.obj['UserId']=element.user_id.name;
                                             this.obj['Created At'] = element.createdAt;
                                             this.obj['id'] = element._id;
                                             this.items.push(this.obj);
@@ -107,7 +114,7 @@
                         result.forEach((element,index) => {
                             this.obj['Name']=element.name?element.name:element.originalname;
                             this.obj['Path']=element.path;
-                            this.obj['UserId']=element.user_id;
+                            this.obj['UserId']=element.user_id.name;
                             this.obj['Created At'] = element.createdAt;
                             this.obj['id'] = element._id;
                             this.items.push(this.obj);

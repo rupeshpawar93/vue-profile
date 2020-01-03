@@ -113,6 +113,11 @@ export default {
             err:''
         }
     },
+    beforeCreate() {
+      if(localStorage.getItem('token')) {
+        this.$router.push({name:'Home'});
+      }
+    },
     methods: {
         login() {
             if(this.field.password=='') {
