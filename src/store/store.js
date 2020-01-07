@@ -78,7 +78,13 @@ const store = new Vuex.Store({
                 .get('http://localhost:3000/api/app/'+fileType+'?page='+page,options)
                 .then((response) => {
                     resolve(response.data.data);
-                }).catch(err=>reject(err));
+                }).catch((err)=>{
+                    if(err.message.indexOf('401')) {
+                        localStorage.setItem('token','');
+                        context.commit('auth_login');
+                    }
+                    reject(err);
+                });
             });
         },
         logout() {
