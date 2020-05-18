@@ -140,9 +140,11 @@ export default {
       this.messages = data;
       // you can also do this.messages.push(data)
     });
+    this.loader = true;
     this.$store
       .dispatch("fileList", ["Video List", 0])
       .then(result => {
+         this.loader = false;
         result.forEach((element, index) => {
           this.obj["Name"] = element.name ? element.name : element.originalname;
           this.obj["Path"] = element.path;
